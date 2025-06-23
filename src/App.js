@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
+import MapChart from "./MapChart";
 
 // Données pays européens - CODES ISO3 (important pour correspondre à la carte)
 const europeCountries = [
@@ -357,52 +358,7 @@ export default function QuizEuropePrototype() {
 
         {/* Carte */}
         <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-          {!mapLoaded && (
-            <div className="flex items-center justify-center h-96 text-gray-500">
-              <div className="text-center">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-2"></div>
-                <p>Chargement de la carte...</p>
-              </div>
-            </div>
-          )}
-
-          <ComposableMap
-            projection="geoAzimuthalEqualArea"
-            projectionConfig={{
-              rotate: [-15, -55, 0],
-              scale:
-                typeof window !== "undefined" && window.innerWidth < 768
-                  ? 600
-                  : 1000,
-            }}
-            width={800}
-            height={500}
-            style={{
-              width: "100%",
-              height:
-                typeof window !== "undefined" && window.innerWidth < 768
-                  ? "300px"
-                  : "500px",
-            }}
-          >
-            <Geographies geography={geoUrl} onLoad={() => setMapLoaded(true)}>
-              {({ geographies }) =>
-                geographies
-                  .filter((geo) =>
-                    europeCountries.some(
-                      (country) => country.id === geo.properties.ISO_A3
-                    )
-                  )
-                  .map((geo) => (
-                    <Geography
-                      key={geo.rsmKey}
-                      geography={geo}
-                      style={getCountryStyle(geo)}
-                    />
-                  ))
-              }
-            </Geographies>
-          </ComposableMap>
+          <MapChart />
         </div>
 
         {/* Légende mobile-friendly */}

@@ -7,7 +7,7 @@
   "dependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-scripts": "^5.0.0",
+    "react-scripts": "^5.0.1",
     "react-simple-maps": "3.0.0",
     "prop-types": "15.8.1",
     "tailwindcss": "4.1.10"
